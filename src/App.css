@@ -14,3 +14,11 @@ input[type="search"] {
   margin: 60px auto;
   display: block;
 }
+
+.description {
+  display: none;
+}
+
+.description.is-visible {
+  display: block;
+}

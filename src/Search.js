@@ -200,7 +200,8 @@ class Search extends Component {
     super();
 
     this.state = {
-      authors: data
+      authors: data,
+      open: false
     };
   }
 
@@ -218,14 +219,30 @@ class Search extends Component {
     });
   }
 
+  toggleDescription = () => {
+    this.setState({
+      open: !this.state.open
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
+
+        {/* START :: Conditional Rendering */}
+        <button onClick={ this.toggleDescription }>Show</button>
+        <div className={ (this.state.open) ? "description is-visible" : "description" }>Hello!</div>
+        { this.state.open && <h3>Secret password</h3> }
+        {/* END :: Conditional Rendering */}
+
+        {/* START Communicating state to children with props */}
         <input onChange={ this.searchByName } type="search" placeholder="Search..." />
         <span style={{
           color: "red"
         }}>TOTAL: { this.state.authors.length }</span>
         <Authors authors={ this.state.authors } />
+        {/* END Communicating state to children with props */}
+
       </React.Fragment>
     );
   }
